@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma"
+import { prisma } from "../../lib/prisma"
 import { User } from "@prisma/client"
 
 export async function emailAlreadyExists(email: string): Promise<boolean> {

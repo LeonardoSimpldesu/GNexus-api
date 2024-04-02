@@ -1,4 +1,4 @@
-import { changeUserPassword, createUser, getUser } from "@/Services/AuthenticateServices";
+import { changeUserPassword, createUser, getUser } from "./../Services/AuthenticateServices";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 

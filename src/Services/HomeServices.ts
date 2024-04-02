@@ -1,4 +1,4 @@
-import { getPostsByEnterpriseId } from "@/Respositories/Publication/PublicationRepository";
+import { getPostsByEnterpriseId } from "../Respositories/Publication/PublicationRepository";
 import { FastifyRequest } from "fastify";
 import z from "zod";
 
