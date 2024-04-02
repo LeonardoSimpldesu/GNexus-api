@@ -8,6 +8,6 @@ export async function appRoutes(app: FastifyInstance) {
   app.post("/authenticate/new-user", userCreate)
   app.patch("/authenticate/new-password", userNewPassword)
   app.get("/", ((request, reply) => {
-    return reply.status(409).send("SAALVE!!!!")
+    return reply.status(200).send("SAALVE!!!!")
   }))
 }
