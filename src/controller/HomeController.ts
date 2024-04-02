@@ -1,4 +1,4 @@
-import { homeServices } from "@/Services/HomeServices";
+import { homeServices } from "../Services/HomeServices";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 
