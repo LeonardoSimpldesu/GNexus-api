@@ -3,6 +3,6 @@ import { appRoutes } from './routes'
 console.log("📃📃📃📃📃📃📃 FOOOODAS");
 const app = fastify()
 
-app.register(appRoutes)
+// app.register(appRoutes)
 
 export default app
