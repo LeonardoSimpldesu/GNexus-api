@@ -6,13 +6,16 @@ import { env } from "./env";
 console.log("📃📃📃📃📃📃📃 FOOOODAS");
 const app = fastify({
     logger: true,
-  })
+})
 
 app.register(appRoutes)
 
 export default async (req: any, res: any) => {
-    await app.ready();
-    app.server.emit('request', req, res);
+    app.ready().then(() => {
+        console.log('successfully booted!')
+      }, (err) => {
+        console.log('an error happened', err)
+      })
 }
 
 // app
