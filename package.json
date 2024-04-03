@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "gnexus api for mobile and web",
   "main": "index.js",
+  "engines": {
+    "node": ">= 20"
+  },
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsup src"
@@ -10,10 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/adapter-pg": "^5.12.0",
     "@prisma/client": "^5.12.0",
     "@types/node": "^20.12.2",
+    "@types/pg": "^8.11.4",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
+    "pg": "^8.11.5",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3",
     "zod": "^3.22.4"
