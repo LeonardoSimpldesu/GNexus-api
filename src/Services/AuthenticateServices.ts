@@ -1,4 +1,4 @@
-import { createNewUser, emailAlreadyExists, getUserAndChangeUserPassword, getUserByEmailAndPassword } from "../Respositories/Authenticate/AuthenticateRepository";
+import { createNewUser, emailAlreadyExists, getUserAndChangeUserPassword, getUserByEmailAndPassword } from "@/Respositories/Authenticate/AuthenticateRepository";
 import { FastifyRequest } from "fastify";
 import { z } from "zod";
 
