@@ -12,22 +12,26 @@ model Enterprise {
   id          String        @id @default(uuid())
   name        String
   Publication Publication[]
+  User        User[]
 
   @@map("enterprise")
 }
 
 model User {
-  id          String        @id @default(uuid())
-  name        String
-  email       String        @unique
-  password    String
-  Publication Publication[]
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  password     String
+  Publication  Publication[]
+  Enterprise   Enterprise    @relation(fields: [enterpriseId], references: [id])
+  enterpriseId String
 
   @@map("user")
 }
 
 model Publication {
   id           String     @id @default(uuid())
+  title        String
   description  String
   datePost     DateTime   @default(now())
   image        String

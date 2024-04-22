@@ -22,10 +22,11 @@ export async function getUser(request: FastifyRequest) {
 export async function createUser(request: FastifyRequest) {
     const requestBodySchema = z.object({
         email: z.string().email(),
+        enterpriseId: z.string().uuid(),
         name: z.string()
     })
 
-    const { email, name } = requestBodySchema.parse(request.body)
+    const { email, name, enterpriseId } = requestBodySchema.parse(request.body)
 
     if (await emailAlreadyExists(email)) {
         throw new Error("❌ User Already Exists")
@@ -33,7 +34,7 @@ export async function createUser(request: FastifyRequest) {
 
     const enterpriseCode = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString()
 
-    const user = await createNewUser(email, name, enterpriseCode)
+    const user = await createNewUser(email, name, enterpriseCode, enterpriseId)
 
     return user
 }

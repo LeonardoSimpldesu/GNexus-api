@@ -20,15 +20,16 @@ export async function getPublicationsByEnterpriseId(request: FastifyRequest) {
 
 export async function createNewPublication(request: FastifyRequest) {
   const requestBodySchema = z.object({
+    title: z.string(),
     description: z.string(),
     image: z.string(),
     userId: z.string().uuid(),
     enterpriseId: z.string().uuid(),
   })
 
-  const { description, image, userId, enterpriseId } = requestBodySchema.parse(request.body)
+  const { description, image, userId, title, enterpriseId } = requestBodySchema.parse(request.body)
 
-  const posts = await createPostByDescriptionImageEnterpriseIdUserId(description, image, userId, enterpriseId)
+  const posts = await createPostByDescriptionImageEnterpriseIdUserId(description, image, userId, enterpriseId, title)
 
   if (posts == null) {
     throw new Error('❌ Error in create a new publication!');

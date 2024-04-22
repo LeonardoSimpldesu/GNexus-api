@@ -21,11 +21,12 @@ export async function getUserByEmailAndPassword(email: string, password: string)
     return user
 }
 
-export async function createNewUser(email: string, name: string, password: string): Promise<User | null> {
+export async function createNewUser(email: string, name: string, password: string, enterpriseId: string): Promise<User | null> {
     const user = await prisma.user.create({
         data: {
             email,
             name,
+            enterpriseId,
             password
         }
     })
