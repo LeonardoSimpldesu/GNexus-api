@@ -21,18 +21,6 @@ export async function getUserByEmailAndPassword(email: string, password: string)
     return user
 }
 
-export async function createNewUser(email: string, name: string, password: string): Promise<User | null> {
-    const user = await prisma.user.create({
-        data: {
-            email,
-            name,
-            password
-        }
-    })
-
-    return user
-}
-
 export async function getUserAndChangeUserPassword(email: string, enterpriseCode: string, newPassword: string): Promise<User | null> {
     const user = await prisma.user.update({
         where: {
