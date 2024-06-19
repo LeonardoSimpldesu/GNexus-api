@@ -12,16 +12,24 @@ model Enterprise {
   id          String        @id @default(uuid())
   name        String
   Publication Publication[]
+  User        User[]
 
   @@map("enterprise")
 }
 
 model User {
-  id          String        @id @default(uuid())
-  name        String
-  email       String        @unique
-  password    String
-  Publication Publication[]
+  id                 String               @id @default(uuid())
+  name               String
+  lastName           String?
+  email              String               @unique
+  password           String
+  department         String?
+  Publication        Publication[]
+  Enterprise         Enterprise           @relation(fields: [enterpriseId], references: [id])
+  enterpriseId       String
+  TaskCompleted      TaskCompleted[]
+  RankingPosition    RankingPosition[]
+  NotificationActive NotificationActive[]
 
   @@map("user")
 }
@@ -38,3 +46,68 @@ model Publication {
 
   @@map("publication_entity")
 }
+
+model Notification {
+  id                 String               @id @default(uuid())
+  name               String
+  title              String
+  message            String
+  NotificationActive NotificationActive[]
+
+  @@map("notification")
+}
+
+model NotificationActive {
+  id             String       @id @default(uuid())
+  email          Boolean      @default(false)
+  cellphone      Boolean      @default(false)
+  notificationId String       @unique
+  userId         String       @unique
+  Notification   Notification @relation(fields: [notificationId], references: [id])
+  User           User         @relation(fields: [userId], references: [id])
+}
+
+model Task {
+  id            String          @id @default(uuid())
+  name          String
+  points        Int
+  created_at    DateTime
+  end_at        DateTime
+  TaskCompleted TaskCompleted[]
+
+  @@map("task")
+}
+
+model TaskCompleted {
+  id           String   @id @default(uuid())
+  completed_at DateTime
+  post         String
+  taskId       String   @unique
+  userId       String   @unique
+  Task         Task     @relation(fields: [taskId], references: [id])
+  User         User     @relation(fields: [userId], references: [id])
+
+  @@map("task_completed")
+}
+
+model Ranking {
+  id              String            @id @default(uuid())
+  created_at      DateTime
+  end_at          DateTime
+  RankingPosition RankingPosition[]
+
+  @@map("ranking")
+}
+
+model RankingPosition {
+  id        String  @id @default(uuid())
+  points    Int
+  rankingId String  @unique
+  userId    String  @unique
+  Ranking   Ranking @relation(fields: [rankingId], references: [id])
+  User      User    @relation(fields: [userId], references: [id])
+
+  @@map("ranking_position")
+}
+
+// PRECISO CRIAR UMA TEMPORADA

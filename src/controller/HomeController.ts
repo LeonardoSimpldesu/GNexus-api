@@ -1,11 +1,17 @@
+import { HomeDto } from "@/Dto/HomeDto";
+
 import { createNewPublication, getPublicationsByEnterpriseId } from "@/Services/HomeServices";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 
 export async function publicationsGet(request: FastifyRequest, reply: FastifyReply) {
   try {
+    var x: HomeDto = new HomeDto(); 
     const homeData = await getPublicationsByEnterpriseId(request)
-    return reply.status(200).send(homeData);
+
+    x.recentPosts.push(...homeData)
+   
+    return reply.status(200).send(x);
 
   } catch (error) {
     

@@ -19,25 +19,6 @@ export async function getUser(request: FastifyRequest) {
     return user
 }
 
-export async function createUser(request: FastifyRequest) {
-    const requestBodySchema = z.object({
-        email: z.string().email(),
-        name: z.string()
-    })
-
-    const { email, name } = requestBodySchema.parse(request.body)
-
-    if (await emailAlreadyExists(email)) {
-        throw new Error("❌ User Already Exists")
-    }
-
-    const enterpriseCode = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString()
-
-    const user = await createNewUser(email, name, enterpriseCode)
-
-    return user
-}
-
 export async function changeUserPassword(request: FastifyRequest) {
     const requestBodySchema = z.object({
         email: z.string().email(),
