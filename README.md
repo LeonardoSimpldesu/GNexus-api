@@ -31,5 +31,3 @@
 - [] Tasks ('name', 'points', 'created_at', 'completed_at')
 - [] Rankings('name', 'position', 'created_at', 'ended_at', 'points' )
 - [] Rewards('name', 'points', 'claimed_at' )
-
-
